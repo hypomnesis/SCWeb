@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="SCWeb">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="SCDomain.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/SCDomain/SCDomain">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="SCWeb"/>
+        <property name="java-output-path" value="/SCWeb/build/classes"/>
+    </wb-module>
+</project-modules>
