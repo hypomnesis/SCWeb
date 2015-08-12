@@ -1,8 +1,8 @@
 package scWeb.writer;
 
 import scDomain.domain.objects.DomainObject;
-
-public abstract class DomainWriter<O extends DomainObject<?>> {
+//should this just be an interface and i can dispense with DomainObject?
+public abstract class DomainWriter<O extends DomainObject> {
 	protected O object;
 	
 	public DomainWriter() {}
@@ -10,7 +10,7 @@ public abstract class DomainWriter<O extends DomainObject<?>> {
 		this.object = object;
 	}
 	
-	public O getObject() { return object; }
+	public DomainObject getObject() { return object; }
 	public void setObject(O object) { this.object = object; }
 	
 	//Do we always want them to return Strings?

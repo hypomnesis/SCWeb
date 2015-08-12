@@ -1,10 +1,9 @@
 <%@ page import="scWeb.data.ConnectionPool" %>
 <%@ page import="scWeb.writer.AgentHtmlWriter" %>
 <%@ page import="scDomain.domain.objects.Agent" %>
-<%@ page import="scDomain.domain.mappers.AgentMapper" %>
-<%@ page import="scDomain.domain.objects.Role" %>
-<%@ page import="scDomain.domain.mappers.RoleMapper" %>
-<%@ page import="scDomain.domain.mappers.MapperFactory" %>
+<%@ page import="scDomain.domain.dao.DomainDaoFactory" %>
+<%@ page import="scDomain.domain.dao.DomainDaoProvider" %>
+<%@ page import="scDomain.data.database.DbDaoProvider" %>
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -16,11 +15,9 @@
 </head>
 <body>
 <%
-Agent me = MapperFactory.getAgentMapper(ConnectionPool.getInstance().getConnection()).find(new Agent.AgentKey("MHAYES"));
-Role.RoleKey admin = new Role.RoleKey("ADMIN");
-out.println(( me.getRole().getKey().equals(admin) ? "My role is admin." : "My role is not admin.<br />"));
-Agent.AgentKey username = new Agent.AgentKey("ADMIN");
-out.println(( me.getRole().equals(username) ? "Test Failed." : "Test Passed.<br />"));
+DomainDaoProvider provider = DomainDaoFactory.INSTANCE.setProvider(DbDaoProvider.INSTANCE.setDataSource(ConnectionPool.getInstance()));
+AgentHtmlWriter writer = new AgentHtmlWriter(DomainDaoFactory.INSTANCE.getAgentDao().find(new Agent.Key("MHAYES")));
+writer.writeObject();
 %>
 </body>
 </html>
