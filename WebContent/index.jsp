@@ -1,6 +1,7 @@
 <%@ page import="scWeb.data.ConnectionPool" %>
 <%@ page import="scWeb.writer.AgentHtmlWriter" %>
 <%@ page import="scDomain.domain.objects.Agent" %>
+<%@ page import="scDomain.domain.commands.AgentCommand" %>
 <%@ page import="scDomain.domain.dao.DomainDaoFactory" %>
 <%@ page import="scDomain.domain.dao.DomainDaoProvider" %>
 <%@ page import="scDomain.data.database.DbDaoProvider" %>
@@ -15,9 +16,10 @@
 </head>
 <body>
 <%
-DomainDaoProvider provider = DomainDaoFactory.INSTANCE.setProvider(DbDaoProvider.INSTANCE.setDataSource(ConnectionPool.getInstance()));
-AgentHtmlWriter writer = new AgentHtmlWriter(DomainDaoFactory.INSTANCE.getAgentDao().find(new Agent.Key("MHAYES")));
-writer.writeObject();
+DomainDaoFactory.INSTANCE.setProvider(DbDaoProvider.INSTANCE.setConnectionProvider(ConnectionPool.getInstance()));
+AgentCommand command = new AgentCommand();
+AgentHtmlWriter writer = new AgentHtmlWriter(command.find(new Agent.Key("MHAYES")));
+out.print(writer.writeObject());
 %>
 </body>
 </html>
