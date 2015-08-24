@@ -22,7 +22,7 @@ public abstract class DomainHtmlWriter<O extends DomainObject> extends DomainWri
         table.append("\t\t</tr>\n\t</thead>\n\t<tbody>\n\t\t<tr>\n");
         
         for (String attribute : attributes.values()) {
-            table.append("\t\t\t<td>").append(attribute).append("</td>\n");
+            table.append("\t\t\t<td>").append(( attribute == null ? "" : attribute )).append("</td>\n");
         }
         table.append("\t\t</tr>\n\t</tbody>\n</table>");
         

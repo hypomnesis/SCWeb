@@ -13,7 +13,7 @@ public final class AgentHtmlWriter extends DomainHtmlWriter<Agent> {
 		
 		attributes.put("Name", object.getDisplayName());
 		attributes.put("Username", object.getUsername());
-		attributes.put("Role", object.getRole().getFullName());
+		attributes.put("Role", object.getRole().toString());
 		attributes.put("Email", object.getEmail());
 		attributes.put("Lead", object.getTeamLeadId());
 		attributes.put("Supervisor", object.getSupervisorId());
